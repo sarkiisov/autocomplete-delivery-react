@@ -32,7 +32,7 @@ export default createUseStyles({
 
   '@media (max-width: 600px)': {
     input: {
-      width: '100%'
+      width: '100% !important'
     }
   }
 });
