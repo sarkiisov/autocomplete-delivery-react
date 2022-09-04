@@ -5,10 +5,15 @@ import '@fontsource/inter';
 
 export default createUseStyles({
   '@global': {
+    '*': {
+      padding: 0,
+      margin: 0,
+      boxSizing: 'border-box',
+      fontFamily: '"Inter", sans-serif'
+    },
     body: {
       background: COLOR_WHITE,
       color: COLOR_BLACK,
-      fontFamily: '"Inter", sans-serif',
       fontWeight: 'bold',
       fontStyle: 'oblique'
     }
