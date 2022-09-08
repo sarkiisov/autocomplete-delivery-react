@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { BaseSVGIcon } from './BaseSVGIcon';
 import { IconProps } from '../icons.types';
 
