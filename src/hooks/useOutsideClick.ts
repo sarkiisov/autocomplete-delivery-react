@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void, excludeElements: React.RefObject<HTMLElement>[]) => {
+export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void, excludeElements: React.RefObject<HTMLElement>[]) => {
   useEffect(() => {
     function isExcluded(element: HTMLElement) {
       if (!excludeElements) {
@@ -28,5 +28,3 @@ const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void
     };
   }, [ref]);
 };
-
-export default useOutsideClick;
