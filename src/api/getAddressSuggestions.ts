@@ -1,6 +1,4 @@
-type BoundNames = 'country' | 'region' | 'area' | 'city' | 'settlement' | 'street' | 'house' | 'flat';
-type FromBound = BoundNames;
-type ToBound = Exclude<BoundNames, 'flat'>;
+import { FromBound, ToBound } from '../types/api';
 
 export async function getAddressSuggestions(query: string, fromBound: FromBound, toBound: ToBound) {
   return fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
