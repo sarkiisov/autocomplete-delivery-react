@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface BaseSVGIconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
   viewBox?: string;
   width?: string;
   height?: string;
@@ -10,6 +11,7 @@ export interface BaseSVGIconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 export const BaseSVGIcon: React.FC<BaseSVGIconProps> = ({
+  className,
   children,
   viewBox = '0 0 24 24',
   width,
@@ -20,6 +22,7 @@ export const BaseSVGIcon: React.FC<BaseSVGIconProps> = ({
 }) => {
   return (
     <svg
+      className={className}
       viewBox={viewBox}
       width={width}
       height={height}
