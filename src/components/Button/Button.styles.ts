@@ -12,7 +12,7 @@ export default createUseStyles({
     fontSize: '16px',
     fontWeight: 'bold',
     fontStyle: 'oblique',
-    transition: 'border .2s, color .2s, backgroundColor .2s',
+    transition: 'border .2s, color .2s, background .2s',
     '&:disabled': {
       color: COLOR_GREY_300,
       cursor: 'not-allowed'
