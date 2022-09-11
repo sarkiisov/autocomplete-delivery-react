@@ -6,7 +6,9 @@ export interface StyleProps {
 }
 
 export default createUseStyles({
-  root: {},
+  root: {
+    marginBottom: '20px'
+  },
   labelText: {
     fontSize: '16px'
   },
