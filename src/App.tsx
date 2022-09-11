@@ -1,12 +1,24 @@
 import React from 'react';
-import useStyles from './theme/global';
+
+import { Provider } from 'react-redux';
+import { store } from './store/configureStore';
+
+import { Form } from './containers/Form';
+
+import useTheme from './theme/global';
+import useStyles from './App.styles';
+
 
 function App() {
-  useStyles();
+  useTheme();
+  const classes = useStyles();
 
   return (
-    <div className="App">
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Form className={classes.form} />
+      </div>
+    </Provider>
   );
 }
 
