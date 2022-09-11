@@ -1,6 +1,6 @@
-import { FromBound, ToBound } from '../types/api';
+import { BoundNames, FromBound, ToBound } from '../types/api';
 
-export async function getAddressSuggestions(query: string, fromBound: FromBound, toBound: ToBound) {
+export async function getAddressSuggestions(query: string, fromBound: FromBound, toBound: ToBound, locationType: BoundNames = 'area', fiasId: string) {
   return fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
     method: 'POST',
     headers: {
@@ -9,6 +9,9 @@ export async function getAddressSuggestions(query: string, fromBound: FromBound,
       'Authorization': `Token ${process.env.REACT_APP_DADATA_API_KEY}`
     },
     body: JSON.stringify({
+      'locations': {
+        [`${locationType}_fias_id`]: fiasId
+      },
       'query': query,
       'from_bound': { value: fromBound },
       'to_bound': { value: toBound }
