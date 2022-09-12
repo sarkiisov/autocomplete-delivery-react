@@ -9,14 +9,15 @@ export interface StyleProps {
 
 export default createUseStyles({
   root: {
-    marginBottom: '20px'
+    marginBottom: '20px',
+    width: '430px'
   },
   labelText: {
     fontSize: '16px'
   },
   autocompleteWrapper: {
     position: 'relative',
-    width: '430px',
+    width: '100%',
     margin: '10px 0px'
   },
   inputWrapper: (props: StyleProps) => ({
@@ -92,7 +93,7 @@ export default createUseStyles({
   },
 
   '@media (max-width: 600px)': {
-    autocompleteWrapper: {
+    root: {
       width: '100% !important'
     }
   }

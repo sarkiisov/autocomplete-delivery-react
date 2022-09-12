@@ -5,6 +5,9 @@ export default createUseStyles({
     padding: '20px',
     marginTop: '10vh',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    '& > form': {
+      width: 'fit-content'
+    }
   }
 });

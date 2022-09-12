@@ -7,13 +7,14 @@ export interface StyleProps {
 
 export default createUseStyles({
   root: {
-    marginBottom: '20px'
+    marginBottom: '20px',
+    width: '430px'
   },
   labelText: {
     fontSize: '16px'
   },
   input: (props: StyleProps) => ({
-    width: '430px',
+    width: '100%',
     height: '55px',
     padding: '0px 16px',
     margin: '10px 0px',
@@ -33,7 +34,7 @@ export default createUseStyles({
   }),
 
   '@media (max-width: 600px)': {
-    input: {
+    root: {
       width: '100% !important'
     }
   }
