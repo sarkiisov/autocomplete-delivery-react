@@ -38,7 +38,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   const classes = useStyles({ error, hasAdditionValue });
 
   const dispatch = useDispatch();
-  const referenceFiasId = referenceType ? useSelector((state: RootState) => state.address.fields[referenceType as AddressKeys]) : '';
+  const referenceFiasId = useSelector((state: RootState) => state.address.fields[referenceType as AddressKeys] || '');
   const lastSearchBoxChanged = useSelector((state: RootState) => state.address.lastTypeChanged);
 
   const [searchBoxValue, setSearchBoxValue] = useState<string>('');
