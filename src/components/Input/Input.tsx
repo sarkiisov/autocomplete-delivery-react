@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className={classes.root}>
       <p className={classes.labelText}>{labelText}</p>
-      <input className={classes.input} placeholder={placeholderText} name={name} onChange={onChange} onBlur={onBlur} autoComplete="off"/>
+      <input className={classes.input} placeholder={placeholderText} name={name} onChange={onChange} onBlur={onBlur} autoComplete="off" />
       <p className={classes.helperText}>{helperText}</p>
     </div>
   );
