@@ -1,11 +1,11 @@
-export type AddressKeys = 'city' | 'settlement' | 'street' | 'house';
+import { AddressBounds } from '../address';
 
-export type AddressComponent = {
-  field: AddressKeys;
+export type AddressItem = {
+  field: AddressBounds;
   value: string;
-}
+};
 
 export type AddressState = {
-  fields: Record<AddressKeys, string>;
-  lastTypeChanged: AddressKeys | null;
-}
+  fields: { [key in AddressBounds ]?: string };
+  lastModifiedKey: AddressBounds | null;
+};
