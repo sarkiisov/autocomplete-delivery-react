@@ -1,10 +1,12 @@
 import { createUseStyles } from 'react-jss';
 
-import { COLOR_RED, COLOR_WHITE, COLOR_BLACK, COLOR_GREY_100, COLOR_GREY_400 } from './../../theme/colors/colors.constant';
+import {
+  COLOR_RED, COLOR_WHITE, COLOR_BLACK, COLOR_GREY_100, COLOR_GREY_400
+} from '../../theme/colors/colors.constant';
 
-export interface StyleProps {
+export interface SearchInputStyleProps {
   error?: boolean;
-  hasAdditionValue?: boolean;
+  hasExtendedItem?: boolean;
 }
 
 export default createUseStyles({
@@ -20,17 +22,21 @@ export default createUseStyles({
     width: '100%',
     margin: '10px 0px'
   },
-  inputWrapper: (props: StyleProps) => ({
+  inputWrapper: (props: SearchInputStyleProps) => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
     height: '55px',
     padding: '0px 16px',
-    border: `1px solid ${ props.error ? COLOR_RED : COLOR_BLACK }`,
-    cursor: 'text'
+    border: `1px solid ${props.error ? COLOR_RED : COLOR_BLACK}`,
+    cursor: 'text',
+    '&:focus-within + $autocompleteList': {
+      display: 'block'
+    }
   }),
   input: {
     flex: 1,
+    height: '100%',
     border: '0',
     outline: 'none',
     fontSize: '16px',
@@ -43,6 +49,7 @@ export default createUseStyles({
     height: '24px'
   },
   autocompleteList: {
+    display: 'none',
     zIndex: '1000',
     position: 'absolute',
     width: '100%',
@@ -59,14 +66,14 @@ export default createUseStyles({
     padding: '0px 15px',
     fontSize: '14px'
   },
-  helperText: (props: StyleProps) => ({
+  helperText: (props: SearchInputStyleProps) => ({
     color: props.error ? COLOR_RED : COLOR_GREY_400,
     fontSize: '14px'
   }),
-  listItem: (props: StyleProps) => ({
+  listItem: (props: SearchInputStyleProps) => ({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: props.hasAdditionValue ? 'space-between' : 'center',
+    justifyContent: props.hasExtendedItem ? 'space-between' : 'center',
     width: '100%',
     height: '65px',
     padding: '15px 15px',
@@ -91,7 +98,6 @@ export default createUseStyles({
     fontSize: '14px',
     color: COLOR_GREY_400
   },
-
   '@media (max-width: 600px)': {
     root: {
       width: '100% !important'
