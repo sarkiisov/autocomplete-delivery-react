@@ -19,18 +19,16 @@ export const BaseSVGIcon: React.FC<BaseSVGIconProps> = ({
   fill,
   stroke,
   htmlColor
-}) => {
-  return (
-    <svg
-      className={className}
-      viewBox={viewBox}
-      width={width}
-      height={height}
-      fill={fill}
-      stroke={stroke}
-      color={htmlColor}
-    >
-      {children}
-    </svg>
-  );
-};
+}) => (
+  <svg
+    className={className}
+    viewBox={viewBox}
+    width={width}
+    height={height}
+    fill={fill}
+    stroke={stroke}
+    color={htmlColor}
+  >
+    {children}
+  </svg>
+);
