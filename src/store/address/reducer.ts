@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AddressState, AddressComponent, AddressKeys } from './../../types/store/address';
+import { AddressState, AddressItem } from '../../types/store/address';
 
 const initialState: AddressState = {
   fields: {
@@ -8,18 +9,18 @@ const initialState: AddressState = {
     street: '',
     house: ''
   },
-  lastTypeChanged: null
+  lastModifiedKey: null
 };
 
 export const addressReducer = createSlice({
   name: 'address',
   initialState,
   reducers: {
-    setAddressValue: (state: AddressState, action: PayloadAction<AddressComponent>) => {
+    setAddressValue: (state: AddressState, action: PayloadAction<AddressItem>) => {
       state.fields[action.payload.field] = action.payload.value;
-      state.lastTypeChanged = action.payload.field;
+      state.lastModifiedKey = action.payload.field;
     },
-    removeAddressValue: (state: AddressState, action: PayloadAction<AddressKeys>) => {
+    removeAddressValue: (state: AddressState, action: PayloadAction<string>) => {
       state.fields[action.payload] = '';
     }
   }
