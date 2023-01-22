@@ -1,6 +1,8 @@
-import { BoundNames, FromBound, ToBound } from '../types/api';
+/* eslint-disable arrow-body-style */
 
-export async function getAddressSuggestions(query: string, fromBound: FromBound, toBound: ToBound, locationType: BoundNames = 'area', fiasId: string) {
+import { AddressBounds } from '../types/address';
+
+export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBounds, toBound: AddressBounds, locationType: AddressBounds = 'area', fiasId?: string) => {
   return fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
     method: 'POST',
     headers: {
@@ -9,18 +11,19 @@ export async function getAddressSuggestions(query: string, fromBound: FromBound,
       'Authorization': `Token ${process.env.REACT_APP_DADATA_API_KEY}`
     },
     body: JSON.stringify({
-      'locations': {
-        [`${locationType}_fias_id`]: fiasId
-      },
-      'query': query,
+      ...(fiasId && {
+        'locations': {
+          [`${locationType}_fias_id`]: fiasId
+        }
+      }),
+      'query': searchQuery,
       'from_bound': { value: fromBound },
       'to_bound': { value: toBound }
     })
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
+  }).then((response) => response.json()).then(({ suggestions }) => {
+    if (fiasId) {
+      return suggestions.filter((addressItem) => addressItem.data[`${locationType}_fias_id`]);
     }
-
-    throw new Error('An error occurred executing the API call');
+    return suggestions;
   });
-}
+};

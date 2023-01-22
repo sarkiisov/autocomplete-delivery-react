@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void, excludeElements: React.RefObject<HTMLElement>[]) => {
+export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () => void, excludeElements?: React.RefObject<HTMLElement>[]) => {
   useEffect(() => {
     function isExcluded(element: HTMLElement) {
       if (!excludeElements) {
@@ -10,7 +10,7 @@ export const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: () 
         if (curElement.current == null) {
           continue;
         }
-        if (curElement.current == element || curElement.current.contains(element)) {
+        if (curElement.current === element || curElement.current.contains(element)) {
           return true;
         }
       }

@@ -1,5 +1,7 @@
 import { createUseStyles } from 'react-jss';
-import { COLOR_RED, COLOR_BLACK, COLOR_GREY_300, COLOR_GREY_400 } from './../../theme/colors/colors.constant';
+import {
+  COLOR_RED, COLOR_BLACK, COLOR_GREY_300, COLOR_GREY_400
+} from '../../theme/colors/colors.constant';
 
 export interface StyleProps {
   error?: boolean;
@@ -18,7 +20,7 @@ export default createUseStyles({
     height: '55px',
     padding: '0px 16px',
     margin: '10px 0px',
-    border: `1px solid ${ props.error ? COLOR_RED : COLOR_BLACK }`,
+    border: `1px solid ${props.error ? COLOR_RED : COLOR_BLACK}`,
     outline: 'none',
     fontSize: '16px',
     fontWeight: 'bold',

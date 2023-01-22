@@ -1,117 +1,60 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 13,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "ignorePatterns": ["/build/*.js"],
-    "rules": {
-        "no-const-assign": "error",
-
-        "no-duplicate-imports": ["error", { "includeExports": true }],
-
-        "camelcase": "error",
-
-        "curly": "error",
-
-        "no-var": "error",
-
-        "prefer-const": "error",
-
-        "array-bracket-newline": ["error", { "multiline": true }],
-
-        "arrow-parens": ["error", "always"],
-
-        "arrow-spacing": "error",
-
-        "block-spacing": "error",
-
-        "brace-style": "error",
-
-        "comma-dangle": ["error", "never"],
-
-        "comma-spacing": ["error", { "before": false, "after": true }],
-
-        "dot-location": ["error", "object"],
-
-        "func-call-spacing": ["error", "never"],
-
-        "indent": ["error", 2],
-
-        "jsx-quotes": ["error", "prefer-double"],
-
-        "key-spacing": ["error", { "beforeColon": false , "afterColon": true }],
-
-        "keyword-spacing": ["error", { "before": true }],
-
-        "no-multi-spaces": "error",
-
-        "no-trailing-spaces": "error",
-
-        "object-curly-spacing": ["error", "always"],
-
-        "quotes": ["error", "single"],
-
-        "semi": ["error", "always"],
-
-        "semi-spacing": ["error", { "before": false, "after": true }],
-
-        "semi-style": ["error", "last"],
-
-        "space-before-blocks": "error",
-
-        "react/display-name": 0,
-
-        "@typescript-eslint/no-unused-vars": "warn",
-
-        "@typescript-eslint/no-var-requires": 0,
-
-        "@typescript-eslint/type-annotation-spacing": ["error", {
-            "before": false,
-            "after": true,
-            "overrides": { "arrow": { "before": true, "after": true }}
-        }],
-
-        "@typescript-eslint/member-delimiter-style": ["error", {
-            "multiline": {
-                "delimiter": "semi",
-                "requireLast": true
-            },
-            "singleline": {
-                "delimiter": "semi",
-                "requireLast": false
-            }
-        }],
-
-        "@typescript-eslint/member-ordering": ["error", { 
-            "default": [
-                "private-field",
-                "protected-field",
-                "public-field",
-                "constructor",
-                "private-method",
-                "protected-method",
-                "public-method",
-                "method",
-                "signature"
-            ] 
-        }],
-
-        "@typescript-eslint/no-inferrable-types": "off"
-    }
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:import/typescript"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "no-continue": "off",
+    "no-alert": "off",
+    "max-len": "off",
+    "quote-props": "off",
+    "no-restricted-syntax": "off",
+    "linebreak-style": "off",
+    "operator-linebreak": ["error", "after", { "overrides": { "?": "ignore", ":": "ignore" } }],
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "comma-dangle": "off",
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/prefer-stateless-function": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "semi",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "semi",
+        "requireLast": false
+      }
+    }],
+    "@typescript-eslint/type-annotation-spacing": ["error", {
+      "before": false,
+      "after": true,
+      "overrides": { "arrow": { "before": true, "after": true }}
+    }]
+  }
 }

@@ -1,6 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
-import { COLOR_WHITE, COLOR_BLACK, COLOR_GREY_300 } from './../../theme/colors/colors.constant';
+import { COLOR_WHITE, COLOR_BLACK, COLOR_GREY_300 } from '../../theme/colors/colors.constant';
+
+export interface ButtonStylesProps {
+
+}
 
 export default createUseStyles({
   root: {

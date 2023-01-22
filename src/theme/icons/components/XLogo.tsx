@@ -9,10 +9,10 @@ export const XLogo: React.FC<IconProps> = (props) => (
     width="24px"
     height="24px"
     fill="none"
-    stroke= {COLOR_GREY_300}
+    stroke={COLOR_GREY_300}
     {...props}
   >
-    <path xmlns="http://www.w3.org/2000/svg" d="M21.3333 2.66667L2.66663 21.3333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path xmlns="http://www.w3.org/2000/svg" d="M2.66663 2.66667L21.3333 21.3333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path xmlns="http://www.w3.org/2000/svg" d="M21.3333 2.66667L2.66663 21.3333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path xmlns="http://www.w3.org/2000/svg" d="M2.66663 2.66667L21.3333 21.3333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </BaseSVGIcon>
 );
