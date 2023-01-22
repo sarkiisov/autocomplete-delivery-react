@@ -1,33 +1,29 @@
 import * as yup from 'yup';
 
-import { FiledProps } from './../../../types/form/field';
-import { Input } from './../../../components/Input/Input';
-import { SearchBox } from './../../../components/SearchBox/SearchBox';
-
+import { FiledProps } from '../../../types/form/field';
+import { Input } from '../../../components/Input/Input';
+import { SearchInput } from '../../../components/SearchInput/SearchInput';
 
 export const fieldConfig: FiledProps[] = [
   {
     as: Input,
     name: 'email',
-    customHandlers: false,
     props: {
       labelText: 'Email'
     }
   },
   {
-    as: SearchBox,
+    as: SearchInput,
     name: 'city',
-    customHandlers: true,
     props: {
       labelText: 'Город',
       suggestionType: 'city',
-      hasAdditionValue: true
+      hasExtendedItem: true
     }
   },
   {
-    as: SearchBox,
+    as: SearchInput,
     name: 'street',
-    customHandlers: true,
     props: {
       labelText: 'Улица',
       suggestionType: 'street',
@@ -35,9 +31,8 @@ export const fieldConfig: FiledProps[] = [
     }
   },
   {
-    as: SearchBox,
+    as: SearchInput,
     name: 'house',
-    customHandlers: true,
     props: {
       labelText: 'Дом',
       suggestionType: 'house',

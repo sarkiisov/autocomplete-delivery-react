@@ -10,32 +10,20 @@ export interface FormProps {
   className?: string;
 }
 
-export const Form: React.FC<FormProps> = ({
-  className
-}) => {
-  const handleSubmit = (values: any) => {
+export const Form: React.FC<FormProps> = ({ className }) => {
+  const handleSubmit = (values) => {
     alert(JSON.stringify(values, null, 2));
   };
 
-  const renderField = (field: FiledProps, errors: any, touched: any, handleBlur: any, setFieldValue: any, setFieldTouched: any) => {
-    const handlersProps = field.customHandlers ? {
-      onChange: (value: any) => setFieldValue(field.name, value),
-      onBlur: () => setFieldTouched(field.name, true, true)
-    } : {
-      name: field.name
-    };
-
-    return (
-      <Field
-        key={field.name}
-        as={field.as}
-        error={touched[field.name] && Boolean(errors[field.name])}
-        {...field.props}
-        {...handlersProps}
-      >
-      </Field>
-    );
-  };
+  const renderField = (field: FiledProps, errors, touched) => (
+    <Field
+      as={field.as}
+      name={field.name}
+      key={field.name}
+      error={touched[field.name] && Boolean(errors[field.name])}
+      {...field.props}
+    />
+  );
 
   return (
     <div className={className}>
@@ -46,22 +34,13 @@ export const Form: React.FC<FormProps> = ({
         validateOnBlur
         validateOnChange
       >
-        {({ isValid, dirty, setFieldValue, setFieldTouched, handleBlur, touched, errors }) => (
-          <>
-            <FormikForm>
-              {fieldConfig.map((field) => renderField(
-                field,
-                errors,
-                touched,
-                handleBlur,
-                setFieldValue,
-                setFieldTouched
-              ))}
-              <Button innerText="Оформить заказ" type="submit"
-                isDisabled={!(isValid && dirty)}
-              />
-            </FormikForm>
-          </>
+        {({
+          isValid, dirty, touched, errors
+        }) => (
+          <FormikForm>
+            {fieldConfig.map((field) => renderField(field, errors, touched))}
+            <Button innerText="Оформить заказ" isDisabled={!(isValid && dirty)} />
+          </FormikForm>
         )}
       </Formik>
     </div>
