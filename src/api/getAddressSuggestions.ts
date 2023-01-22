@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 
-import { AddressBounds } from '../types/api';
+import { AddressBounds } from '../types/address';
 
 export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBounds, toBound: AddressBounds, locationType: AddressBounds = 'area', fiasId?: string) => {
   return fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
