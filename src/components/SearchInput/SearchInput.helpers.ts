@@ -12,9 +12,9 @@ export const parseAddressItem = (addressItem: any, suggestionType: AddressBounds
   };
 };
 
-export const compareBoundPriorities = (key1: AddressBounds, key2: AddressBounds) => {
-  const boundsPriorityArray = Object.keys(AddressBoundsPriority);
-  if (boundsPriorityArray.indexOf[key1] < boundsPriorityArray.indexOf[key2]) return -1;
-  if (boundsPriorityArray.indexOf[key1] > boundsPriorityArray.indexOf[key2]) return 1;
+export const compareBoundsPriorities = (key1: AddressBounds, key2: AddressBounds) => {
+  const boundsPriorityArray = Object.values(AddressBoundsPriority) as AddressBounds[];
+  if (boundsPriorityArray.indexOf(key1) < boundsPriorityArray.indexOf(key2)) return -1;
+  if (boundsPriorityArray.indexOf(key1) > boundsPriorityArray.indexOf(key2)) return 1;
   return 0;
 };

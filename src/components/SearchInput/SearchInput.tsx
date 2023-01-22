@@ -10,7 +10,7 @@ import { setAddressValue, removeAddressValue } from '../../store/address/reducer
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addressSelectors } from '../../store/address/selectors';
 import { AddressBounds } from '../../types/address';
-import { compareBoundPriorities, parseAddressItem } from './SearchInput.helpers';
+import { parseAddressItem, compareBoundsPriorities } from './SearchInput.helpers';
 
 export interface SearchInputProps {
   name: string;
@@ -69,7 +69,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const clearDependentInputs = () => {
     if (!lastModifiedKey) return;
-    if (compareBoundPriorities(lastModifiedKey, suggestionType) === -1) {
+    if (compareBoundsPriorities(lastModifiedKey, suggestionType) === -1) {
       dispatch(removeAddressValue(suggestionType));
       setSearchInputValue('');
     }
