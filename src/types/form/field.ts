@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { InputProps } from '../../components/Input/Input';
-import { SearchInputProps } from '../../components/SearchInput/SearchInput';
+import { InputProps } from '../../components/Input';
+import { SearchInputProps } from '../../components/SearchInput';
 
 export type FiledProps = {
   as: FC<InputProps>;
