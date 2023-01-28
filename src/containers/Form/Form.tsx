@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Formik, Form as FormikForm, Field } from 'formik';
 import { fieldConfig, initialValues, validationSchema } from './config/fieldsConfig';
 import { FiledProps } from '../../types/form';
 
 import { Button } from '../../components/Button';
+import { setNotification } from '../../utils/setNotification';
 
 export interface FormProps {
   className?: string;
@@ -12,7 +13,8 @@ export interface FormProps {
 
 export const Form: React.FC<FormProps> = ({ className }) => {
   const handleSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2));
+    setNotification({ type: 'success', message: 'Заказ успешно создан' });
+    console.log(JSON.stringify(values, null, 2));
   };
 
   const renderField = (field: FiledProps, errors, touched) => (

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addressSelectors } from '../../store/address/selectors';
 import { AddressBounds } from '../../types/address';
 import { parseAddressItem, compareBoundsPriorities } from './SearchInput.helpers';
+import { setNotification } from '../../utils/setNotification';
 
 export interface SearchInputProps {
   name: string;
@@ -44,7 +45,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['addresses', searchInputValue, suggestionType, referenceType, referenceFiasId],
     queryFn: () => getAddressSuggestions(searchInputValue, suggestionType, suggestionType, referenceType, referenceFiasId),
+    onError: () => setNotification({ type: 'error', message: 'Ошибка при вызове API' }),
     enabled: false,
+    retry: false,
   });
 
   const fetchAddressSuggestions = useDebounce(() => {
