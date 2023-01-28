@@ -20,7 +20,12 @@ export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBou
       'from_bound': { value: fromBound },
       'to_bound': { value: toBound }
     })
-  }).then((response) => response.json()).then(({ suggestions }) => {
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Network response was not ok');
+  }).then(({ suggestions }) => {
     if (fiasId) {
       return suggestions.filter((addressItem) => addressItem.data[`${locationType}_fias_id`]);
     }
