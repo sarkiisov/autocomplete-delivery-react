@@ -63,7 +63,7 @@ export default createUseStyles({
     color: COLOR_GREY_400,
     display: 'flex',
     alignItems: 'center',
-    padding: '0px 15px',
+    padding: '0px 16px',
     fontSize: '14px'
   },
   helperText: (props: SearchInputStyleProps) => ({
@@ -76,7 +76,7 @@ export default createUseStyles({
     justifyContent: props.hasExtendedItem ? 'space-between' : 'center',
     width: '100%',
     height: '65px',
-    padding: '15px 15px',
+    padding: '16px 16px',
     backgroundColor: COLOR_WHITE,
     transition: 'background .1s',
     '&:hover': {
