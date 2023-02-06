@@ -1,11 +1,11 @@
 import { AddressBounds } from '../address';
 
-export type AddressItem = {
+export type AddressFormItem = {
   field: AddressBounds;
   value: string;
 };
 
-export type AddressState = {
+export type AddressFormState = {
   fields: { [key in AddressBounds ]?: string };
   lastModifiedKey: AddressBounds | null;
 };
