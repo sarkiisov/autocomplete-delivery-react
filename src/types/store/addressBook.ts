@@ -1,4 +1,4 @@
-export type AddressBookStateItem = {
+export type AddressBookItem = {
   id: string;
   bookNumber?: number;
   timestamp: number;
@@ -7,4 +7,6 @@ export type AddressBookStateItem = {
   };
 };
 
-export type AddressBookState = AddressBookStateItem[];
+export type AddressBookState = {
+  addresses: AddressBookItem[];
+};
