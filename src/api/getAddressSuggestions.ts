@@ -2,7 +2,7 @@
 
 import { AddressBounds } from '../types/address';
 
-export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBounds, toBound: AddressBounds, locationType: AddressBounds = 'area', fiasId?: string) => {
+export const getAddressSuggestions = (searchQuery: string, suggestionType: AddressBounds, locationType: AddressBounds = 'area', fiasId?: string) => {
   return fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
     method: 'POST',
     headers: {
@@ -17,8 +17,8 @@ export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBou
         }
       }),
       'query': searchQuery,
-      'from_bound': { value: fromBound },
-      'to_bound': { value: toBound }
+      'from_bound': { value: suggestionType },
+      'to_bound': { value: suggestionType }
     })
   }).then((response) => {
     if (response.ok) {
@@ -27,7 +27,7 @@ export const getAddressSuggestions = (searchQuery: string, fromBound: AddressBou
     throw new Error('Network response was not ok');
   }).then(({ suggestions }) => {
     if (fiasId) {
-      return suggestions.filter((addressItem) => addressItem.data[`${locationType}_fias_id`]);
+      return suggestions.filter((addressItem) => addressItem.data[`${locationType}_fias_id`] && addressItem.data[`${suggestionType}_fias_id`]);
     }
     return suggestions;
   });
