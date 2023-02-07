@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 
-import { FiledProps } from '../../../types/form/field';
-import { Input } from '../../../components/Input/Input';
-import { SearchInput } from '../../../components/SearchInput/SearchInput';
+import { FiledProps } from '../types/form';
+import { Input } from '../components/Input';
+import { SearchInput } from '../components/SearchInput';
 
 export const fieldConfig: FiledProps[] = [
   {
