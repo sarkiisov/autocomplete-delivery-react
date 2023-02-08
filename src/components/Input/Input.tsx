@@ -1,8 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import useStyles from './Input.styles';
 
 export interface InputProps {
+  className?: string;
+  value: string;
   labelText: string;
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -13,6 +16,8 @@ export interface InputProps {
 }
 
 export const Input: React.FC<InputProps> = ({
+  className,
+  value,
   labelText,
   name,
   onChange,
@@ -24,9 +29,17 @@ export const Input: React.FC<InputProps> = ({
   const classes = useStyles({ error });
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, className)}>
       <p className={classes.labelText}>{labelText}</p>
-      <input className={classes.input} placeholder={placeholderText} name={name} onChange={onChange} onBlur={onBlur} autoComplete="off" />
+      <input
+        className={classes.input}
+        placeholder={placeholderText}
+        value={value}
+        name={name}
+        onChange={onChange}
+        onBlur={onBlur}
+        autoComplete="off"
+      />
       <p className={classes.helperText}>{helperText}</p>
     </div>
   );
