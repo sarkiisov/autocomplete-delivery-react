@@ -1,6 +1,5 @@
 export type AddressBookItem = {
   id: string;
-  bookNumber?: number;
   timestamp: number;
   details: {
     [key: string]: string;

@@ -11,9 +11,7 @@ export const addressReducer = createSlice({
   initialState,
   reducers: {
     addBookItem: (state: AddressBookState, action: PayloadAction<AddressBookItem>) => {
-      const bookItem = action.payload;
-      bookItem.bookNumber = state.addresses.length + 1;
-      state.addresses.push(bookItem);
+      state.addresses.push(action.payload);
     },
     removeBookItem: (state: AddressBookState, action: PayloadAction<string>) => {
       state.addresses = state.addresses.filter((item) => item.id !== action.payload);
