@@ -8,7 +8,8 @@ export interface ButtonStylesProps {
 
 export default createUseStyles({
   root: {
-    width: '430px',
+    width: '100%',
+    maxWidth: '430px',
     height: '55px',
     color: COLOR_BLACK,
     border: '1px solid currentColor',
@@ -29,7 +30,8 @@ export default createUseStyles({
   },
   '@media (max-width: 600px)': {
     root: {
-      width: '100% !important'
+      maxWidth: 'none',
+      width: '100%'
     }
   }
 });
