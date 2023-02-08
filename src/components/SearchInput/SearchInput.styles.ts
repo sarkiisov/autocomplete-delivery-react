@@ -12,7 +12,8 @@ export interface SearchInputStyleProps {
 export default createUseStyles({
   root: {
     marginBottom: '20px',
-    width: '430px'
+    width: '100%',
+    maxWidth: '430px'
   },
   labelText: {
     fontSize: '16px'
@@ -100,7 +101,8 @@ export default createUseStyles({
   },
   '@media (max-width: 600px)': {
     root: {
-      width: '100% !important'
+      maxWidth: 'none',
+      width: '100%'
     }
   }
 });

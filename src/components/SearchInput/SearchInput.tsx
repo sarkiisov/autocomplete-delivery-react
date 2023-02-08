@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
+import hash from 'object-hash';
+
 import { useQuery } from 'react-query';
 import { useFormikContext } from 'formik';
-import useStyles from './SearchInput.styles';
 
 import { SearchLogo, LoaderLogo } from '../../theme/icons/components';
 import { useDebounce } from '../../hooks';
 import { getAddressSuggestions } from '../../api';
-import { setAddressValue, removeAddressValue } from '../../store/address/reducer';
+import { setAddressValue, removeAddressValue } from '../../store/addressForm/reducer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { addressSelectors } from '../../store/address/selectors';
+import { addressFormSelectors } from '../../store/addressForm/selectors';
 import { AddressBounds } from '../../types/address';
 import { parseAddressItem, compareBoundsPriorities } from './SearchInput.helpers';
-import { setNotification } from '../../utils/setNotification';
+import { setNotification } from '../../utils';
+
+import useStyles from './SearchInput.styles';
 
 export interface SearchInputProps {
+  className?: string;
+  value: string;
   name: string;
   labelText: string;
   suggestionType: AddressBounds;
@@ -24,6 +30,8 @@ export interface SearchInputProps {
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
+  className,
+  value,
   name,
   labelText,
   suggestionType,
@@ -37,21 +45,19 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const { setFieldValue, setFieldTouched } = useFormikContext();
 
   const dispatch = useAppDispatch();
-  const referenceFiasId = useAppSelector(addressSelectors.getReferenceFiasId(referenceType));
-  const lastModifiedKey = useAppSelector(addressSelectors.getLastModifiedKey);
-
-  const [searchInputValue, setSearchInputValue] = useState('');
+  const referenceFiasId = useAppSelector(addressFormSelectors.getReferenceFiasId(referenceType));
+  const lastModifiedKey = useAppSelector(addressFormSelectors.getLastModifiedKey);
 
   const { isLoading, data, refetch } = useQuery({
-    queryKey: ['addresses', searchInputValue, suggestionType, referenceType, referenceFiasId],
-    queryFn: () => getAddressSuggestions(searchInputValue, suggestionType, suggestionType, referenceType, referenceFiasId),
+    queryKey: ['addresses', value, suggestionType, referenceType, referenceFiasId],
+    queryFn: () => getAddressSuggestions(value, suggestionType, referenceType, referenceFiasId),
     onError: () => setNotification({ type: 'error', message: 'Ошибка при вызове API' }),
     enabled: false,
     retry: false,
   });
 
   const fetchAddressSuggestions = useDebounce(() => {
-    if (!searchInputValue) return;
+    if (!value) return;
     refetch();
   }, 1000);
 
@@ -61,12 +67,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(removeAddressValue(suggestionType));
-    setSearchInputValue(event.target.value);
+    setFieldValue(name, event.target.value);
   };
 
   const handleSelectAddress = (fiasId: string, addressValue: string) => {
     dispatch(setAddressValue({ field: suggestionType, value: fiasId }));
-    setSearchInputValue(addressValue);
     setFieldValue(name, addressValue);
   };
 
@@ -74,21 +79,21 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     if (!lastModifiedKey) return;
     if (compareBoundsPriorities(lastModifiedKey, suggestionType) === -1) {
       dispatch(removeAddressValue(suggestionType));
-      setSearchInputValue('');
+      setFieldValue(name, '');
     }
   };
 
-  useEffect(fetchAddressSuggestions, [searchInputValue]);
+  useEffect(fetchAddressSuggestions, [value]);
   useEffect(clearDependentInputs, [lastModifiedKey]);
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, className)}>
       <span className={classes.labelText}>{labelText}</span>
       <div className={classes.autocompleteWrapper}>
         <div className={classes.inputWrapper}>
           <input
             className={classes.input}
-            value={searchInputValue}
+            value={value}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
             autoComplete="off"
@@ -101,11 +106,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           </div>
         </div>
         <div className={classes.autocompleteList}>
-          { data
+          {data
             ? data.map((addressItem) => {
               const { fiasId, mainAddress, extendedAddress } = parseAddressItem(addressItem, suggestionType);
+              const itemKey = hash(addressItem);
+
               return (
-                <div key={fiasId} className={classes.listItem} onMouseDown={() => handleSelectAddress(fiasId, mainAddress)}>
+                <div key={itemKey} className={classes.listItem} onMouseDown={() => handleSelectAddress(fiasId, mainAddress)}>
                   <span className={classes.mainAddress}>{mainAddress}</span>
                   { hasExtendedItem && <span className={classes.additionAddress}>{extendedAddress}</span> }
                 </div>
