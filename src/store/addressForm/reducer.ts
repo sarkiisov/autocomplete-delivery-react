@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AddressState, AddressItem } from '../../types/store/address';
+import { AddressFormState, AddressFormItem } from '../../types/store';
 
-const initialState: AddressState = {
+const initialState: AddressFormState = {
   fields: {
     city: '',
     settlement: '',
@@ -13,22 +14,26 @@ const initialState: AddressState = {
 };
 
 export const addressReducer = createSlice({
-  name: 'address',
+  name: 'addressForm',
   initialState,
   reducers: {
-    setAddressValue: (state: AddressState, action: PayloadAction<AddressItem>) => {
+    setAddressValue: (state: AddressFormState, action: PayloadAction<AddressFormItem>) => {
       state.fields[action.payload.field] = action.payload.value;
       state.lastModifiedKey = action.payload.field;
     },
-    removeAddressValue: (state: AddressState, action: PayloadAction<string>) => {
+    removeAddressValue: (state: AddressFormState, action: PayloadAction<string>) => {
       state.fields[action.payload] = '';
+    },
+    resetAddressForm: (state: AddressFormState, action: PayloadAction<void>) => {
+      state = initialState;
     }
   }
 });
 
 export const {
   setAddressValue,
-  removeAddressValue
+  removeAddressValue,
+  resetAddressForm
 } = addressReducer.actions;
 
 export default addressReducer.reducer;

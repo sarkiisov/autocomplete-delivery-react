@@ -3,19 +3,20 @@ import {
   COLOR_RED, COLOR_BLACK, COLOR_GREY_300, COLOR_GREY_400
 } from '../../theme/colors/colors.constant';
 
-export interface StyleProps {
+export interface InputStyleProps {
   error?: boolean;
 }
 
 export default createUseStyles({
   root: {
     marginBottom: '20px',
-    width: '430px'
+    width: '100%',
+    maxWidth: '430px'
   },
   labelText: {
     fontSize: '16px'
   },
-  input: (props: StyleProps) => ({
+  input: (props: InputStyleProps) => ({
     width: '100%',
     height: '55px',
     padding: '0px 16px',
@@ -30,14 +31,15 @@ export default createUseStyles({
       color: COLOR_GREY_300
     }
   }),
-  helperText: (props: StyleProps) => ({
+  helperText: (props: InputStyleProps) => ({
     color: props.error ? COLOR_RED : COLOR_GREY_400,
     fontSize: '14px'
   }),
 
   '@media (max-width: 600px)': {
     root: {
-      width: '100% !important'
+      maxWidth: 'none',
+      width: '100%'
     }
   }
 });

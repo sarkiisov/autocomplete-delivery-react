@@ -12,7 +12,8 @@ export interface SearchInputStyleProps {
 export default createUseStyles({
   root: {
     marginBottom: '20px',
-    width: '430px'
+    width: '100%',
+    maxWidth: '430px'
   },
   labelText: {
     fontSize: '16px'
@@ -63,7 +64,7 @@ export default createUseStyles({
     color: COLOR_GREY_400,
     display: 'flex',
     alignItems: 'center',
-    padding: '0px 15px',
+    padding: '0px 16px',
     fontSize: '14px'
   },
   helperText: (props: SearchInputStyleProps) => ({
@@ -76,7 +77,7 @@ export default createUseStyles({
     justifyContent: props.hasExtendedItem ? 'space-between' : 'center',
     width: '100%',
     height: '65px',
-    padding: '15px 15px',
+    padding: '16px 16px',
     backgroundColor: COLOR_WHITE,
     transition: 'background .1s',
     '&:hover': {
@@ -100,7 +101,8 @@ export default createUseStyles({
   },
   '@media (max-width: 600px)': {
     root: {
-      width: '100% !important'
+      maxWidth: 'none',
+      width: '100%'
     }
   }
 });

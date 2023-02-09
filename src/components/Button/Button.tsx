@@ -1,25 +1,25 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
+import clsx from 'clsx';
 
 import useStyles from './Button.styles';
 
 export interface ButtonProps {
-  innerText: string;
+  className?: string;
+  children: React.ReactNode;
   isDisabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  innerText,
+  className,
+  children,
   isDisabled
 }) => {
   const classes = useStyles();
 
   return (
-    <button
-      className={classes.root}
-      disabled={isDisabled}
-    >
-      {innerText}
+    <button className={clsx(classes.root, className)} disabled={isDisabled}>
+      {children}
     </button>
   );
 };

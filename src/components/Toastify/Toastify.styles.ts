@@ -21,7 +21,7 @@ export default createUseStyles({
   },
   '@global': {
     '.Toastify__toast': {
-      padding: '15px',
+      padding: '16px',
       border: `1px solid ${COLOR_BLACK}`,
       borderRadius: 0,
     }
